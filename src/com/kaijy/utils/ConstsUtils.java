@@ -12,7 +12,7 @@ public class ConstsUtils {
     // 随机任务数
     public static final int TASKNUM = 4;
     // 随机用户数
-    public static final int USERNUM = 20;
+    public static final int USERNUM = 25;
     // 任务最小感知时间
     public static final int TASKMINTIME = 5;
     // 任务最大感知时间
