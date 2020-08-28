@@ -120,7 +120,6 @@ public class UserService {
                 // 转换为SenArea类
                 List<SenArea> allSenAreaList = convertSenArea(allsubsets);
                 getRandomSenArea(originUser, allSenAreaList);
-                System.out.println();
             }
         }
         return originUserList;

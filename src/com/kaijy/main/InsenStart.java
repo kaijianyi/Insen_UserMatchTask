@@ -3,13 +3,11 @@ package com.kaijy.main;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 import com.kaijy.model.Platform;
 import com.kaijy.model.PlatformTotal;
-import com.kaijy.model.SenArea;
 import com.kaijy.model.Task;
 import com.kaijy.model.User;
 import com.kaijy.service.AuctionService;
@@ -50,8 +48,8 @@ public class InsenStart {
             // 任务Json
             String originTaskListStr = JsonUtils.objToFastjson(originTaskList);
 
-            // System.out.println(originUserListStr);
-            // System.out.println(originTaskListStr);
+            System.out.println(originUserListStr);
+            System.out.println(originTaskListStr);
 
             // 生成数据时间
             Instant ranTimeEnd = Instant.now();
@@ -91,20 +89,20 @@ public class InsenStart {
             // 本轮拍卖存在异常用户
             while (isAbnormal) {
 
-                System.out.println(">>>>>>异常用户信息：");
-                for (User winner : abnormalWinnerList) {
-                    if (winner.getCareless() == 1) {
-                        System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价："
-                                + winner.getBid() + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间："
-                                + winner.getRemainSenTime() + ", 感知时间和：" + winner.getSenTimeTotal() + ", 关联任务："
-                                + Arrays.toString(winner.getTaskIdList().toArray()) + ", 单位成本：" + winner.getAveCost()
-                                + ", 收益：" + winner.getPay() + ", 异常：" + winner.getCareless());
-                        for (SenArea senArea : winner.getAllocation()) {
-                            System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray())
-                                    + ", 分配sa时间：" + senArea.getSenTime());
-                        }
-                    }
-                }
+                // System.out.println(">>>>>>异常用户信息：");
+                // for (User winner : abnormalWinnerList) {
+                // if (winner.getCareless() == 1) {
+                // System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价："
+                // + winner.getBid() + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间："
+                // + winner.getRemainSenTime() + ", 感知时间和：" + winner.getSenTimeTotal() + ", 关联任务："
+                // + Arrays.toString(winner.getTaskIdList().toArray()) + ", 单位成本：" + winner.getAveCost()
+                // + ", 收益：" + winner.getPay() + ", 异常：" + winner.getCareless());
+                // for (SenArea senArea : winner.getAllocation()) {
+                // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray())
+                // + ", 分配sa时间：" + senArea.getSenTime());
+                // }
+                // }
+                // }
 
                 // 重置竞拍任务数据
                 List<Task> reTaskList = McdService.getReTaskData(nowWinnerList, originTaskListStr);
@@ -112,11 +110,11 @@ public class InsenStart {
                 List<User> reUserList = McdService.getReUserData(abnormalWinnerList, originUserListStr);
                 String reUserListStr = JsonUtils.objToFastjson(reUserList);
 
-                System.out.println(">>>>>>任务信息：");
-                for (Task task : reTaskList) {
-                    System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间："
-                            + task.getOriginSenTime() + ", 剩余时间：" + task.getRemainSenTime());
-                }
+                // System.out.println(">>>>>>任务信息：");
+                // for (Task task : reTaskList) {
+                // System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间："
+                // + task.getOriginSenTime() + ", 剩余时间：" + task.getRemainSenTime());
+                // }
 
                 // 再次进行拍卖后的结果
                 nowWinnerList = AuctionService.startAuction(reUserListStr, reTaskListStr);
@@ -160,41 +158,41 @@ public class InsenStart {
             // 存入当前汇总数据
             platformList.add(platform);
 
-            for (User winner : normalWinnerList) {
-                System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
-                        + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
-                        + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
-                        + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
-                for (SenArea senArea : winner.getAllocation()) {
-                    System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
-                            + senArea.getSenTime());
-                }
-            }
-            System.out.println();
-
-            for (User winner : abnormalWinnerList) {
-                System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
-                        + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
-                        + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
-                        + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay() + ", 异常：" + winner.getCareless());
-                for (SenArea senArea : winner.getAllocation()) {
-                    System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
-                            + senArea.getSenTime());
-                }
-            }
-            System.out.println();
-
-            for (User winner : mcdWinnerList) {
-                System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
-                        + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
-                        + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
-                        + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
-                for (SenArea senArea : winner.getAllocation()) {
-                    System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
-                            + senArea.getSenTime());
-                }
-            }
-            System.out.println();
+            // for (User winner : normalWinnerList) {
+            // System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
+            // + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
+            // + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
+            // + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
+            // for (SenArea senArea : winner.getAllocation()) {
+            // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
+            // + senArea.getSenTime());
+            // }
+            // }
+            // System.out.println();
+            //
+            // for (User winner : abnormalWinnerList) {
+            // System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
+            // + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
+            // + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
+            // + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay() + ", 异常：" + winner.getCareless());
+            // for (SenArea senArea : winner.getAllocation()) {
+            // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
+            // + senArea.getSenTime());
+            // }
+            // }
+            // System.out.println();
+            //
+            // for (User winner : mcdWinnerList) {
+            // System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
+            // + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
+            // + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
+            // + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
+            // for (SenArea senArea : winner.getAllocation()) {
+            // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
+            // + senArea.getSenTime());
+            // }
+            // }
+            // System.out.println();
         }
 
         PlatformTotal platformTotal = new PlatformTotal();

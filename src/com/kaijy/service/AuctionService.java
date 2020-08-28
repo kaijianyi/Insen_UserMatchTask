@@ -1,7 +1,6 @@
 package com.kaijy.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -55,11 +54,11 @@ public class AuctionService {
             while (bidUser.getRemainSenTime() > 0 && senAreSize > 0) {
                 // 找到最小分配时间
                 for (int i = 0; i < senAreList.size(); i++) {
-                    System.out.println("\n>>>>>>>>>>TSA更新任务信息列表：");
-                    for (Task task : bidTaskList) {
-                        System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间："
-                                + task.getOriginSenTime() + ", 剩余时间：" + task.getRemainSenTime());
-                    }
+                    // System.out.println("\n>>>>>>>>>>TSA更新任务信息列表：");
+                    // for (Task task : bidTaskList) {
+                    // System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间："
+                    // + task.getOriginSenTime() + ", 剩余时间：" + task.getRemainSenTime());
+                    // }
 
                     // 假设用户感知时间最小
                     int minSenTime = bidUser.getRemainSenTime();
@@ -91,19 +90,19 @@ public class AuctionService {
                         }
                     }
 
-                    System.out.println(
-                            "\n>>>>>>>>>>分配信息列表：" + Arrays.toString(maxSenArea.getTaskIdList().toArray()) + "<<-当前分配");
-                    System.out.println(
-                            "编号：" + bidUser.getId() + ", id：" + bidUser.getUserId() + ", 报价：" + bidUser.getBid()
-                                    + ", 感知时间：" + bidUser.getOriginSenTime() + ", 剩余感知时间：" + bidUser.getRemainSenTime()
-                                    + ", 关联任务：" + Arrays.toString(bidUser.getTaskIdList().toArray()));
-                    for (SenArea senArea : bidUser.getAllocation()) {
-                        System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
-                                + senArea.getSenTime());
-                    }
+                    // System.out.println(
+                    // "\n>>>>>>>>>>分配信息列表：" + Arrays.toString(maxSenArea.getTaskIdList().toArray()) + "<<-当前分配");
+                    // System.out.println(
+                    // "编号：" + bidUser.getId() + ", id：" + bidUser.getUserId() + ", 报价：" + bidUser.getBid()
+                    // + ", 感知时间：" + bidUser.getOriginSenTime() + ", 剩余感知时间：" + bidUser.getRemainSenTime()
+                    // + ", 关联任务：" + Arrays.toString(bidUser.getTaskIdList().toArray()));
+                    // for (SenArea senArea : bidUser.getAllocation()) {
+                    // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
+                    // + senArea.getSenTime());
+                    // }
                 }
             }
-            System.out.println("\n############################################################################");
+            // System.out.println("############################################################################");
         }
     }
 
@@ -128,11 +127,11 @@ public class AuctionService {
             taskTimeTotal += task.getRemainSenTime();
         }
 
-        System.out.println("\n>>>>>>>>>>初始任务信息列表：");
-        for (Task task : bidTaskList) {
-            System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间：" + task.getOriginSenTime()
-                    + ", 剩余时间：" + task.getRemainSenTime());
-        }
+        // System.out.println("\n>>>>>>>>>>初始任务信息列表：");
+        // for (Task task : bidTaskList) {
+        // System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间：" + task.getOriginSenTime()
+        // + ", 剩余时间：" + task.getRemainSenTime());
+        // }
 
         // 开始拍卖
         while (taskTimeTotal > 0) {
@@ -144,15 +143,15 @@ public class AuctionService {
             // 获得winner,深拷贝
             User winner = (User) getWinner(bidUserList, bidTaskList).clone();
 
-            System.out.println("\n>>>>>>>>>>获胜者信息列表：");
-            System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
-                    + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
-                    + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
-                    + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
-            for (SenArea senArea : winner.getAllocation()) {
-                System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
-                        + senArea.getSenTime());
-            }
+            // System.out.println("\n>>>>>>>>>>获胜者信息列表：");
+            // System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
+            // + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
+            // + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
+            // + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
+            // for (SenArea senArea : winner.getAllocation()) {
+            // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
+            // + senArea.getSenTime());
+            // }
             // 添加到获胜者集合
             winnerList.add(winner);
 
@@ -185,12 +184,12 @@ public class AuctionService {
                 }
             }
 
-            System.out.println("\n>>>>>>>>>>更新任务信息列表：");
-            for (Task task : bidTaskList) {
-                System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间："
-                        + task.getOriginSenTime() + ", 剩余时间：" + task.getRemainSenTime());
-            }
-            System.out.println();
+            // System.out.println("\n>>>>>>>>>>更新任务信息列表：");
+            // for (Task task : bidTaskList) {
+            // System.out.println("编号：" + task.getId() + ", id：" + task.getTaskId() + ", 原始时间："
+            // + task.getOriginSenTime() + ", 剩余时间：" + task.getRemainSenTime());
+            // }
+            // System.out.println();
         }
         return winnerList;
     }
@@ -200,7 +199,7 @@ public class AuctionService {
      */
     private static User getWinner(List<User> bidUserList, List<Task> bidTaskList) {
 
-        System.out.println("\n>>>>>>>>>>用户竞标列表：");
+        // System.out.println("\n>>>>>>>>>>用户竞标列表：");
         for (User bidUser : bidUserList) {
 
             // 计算分配方案的所有时间
@@ -215,16 +214,16 @@ public class AuctionService {
             String aveCostStr = NumberUtils.division(bidUser.getBid(), bidUser.getSenTimeTotal());
             bidUser.setAveCost(aveCostStr);
 
-            System.out.println("\n>>>>>>>>>>分配信息列表：");
-            System.out.println("编号：" + bidUser.getId() + ", id：" + bidUser.getUserId() + ", 报价：" + bidUser.getBid()
-                    + ", 感知时间：" + bidUser.getOriginSenTime() + ", 剩余感知时间：" + bidUser.getRemainSenTime() + ", 感知时间和："
-                    + senTimeTotal + ", 关联任务：" + Arrays.toString(bidUser.getTaskIdList().toArray()) + ", 单位成本："
-                    + bidUser.getAveCost() + ", 收益：" + bidUser.getPay());
-            for (SenArea senArea : bidUser.getAllocation()) {
-                System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
-                        + senArea.getSenTime());
-            }
-            System.out.println("############################################################################");
+            // System.out.println("\n>>>>>>>>>>分配信息列表：");
+            // System.out.println("编号：" + bidUser.getId() + ", id：" + bidUser.getUserId() + ", 报价：" + bidUser.getBid()
+            // + ", 感知时间：" + bidUser.getOriginSenTime() + ", 剩余感知时间：" + bidUser.getRemainSenTime() + ", 感知时间和："
+            // + senTimeTotal + ", 关联任务：" + Arrays.toString(bidUser.getTaskIdList().toArray()) + ", 单位成本："
+            // + bidUser.getAveCost() + ", 收益：" + bidUser.getPay());
+            // for (SenArea senArea : bidUser.getAllocation()) {
+            // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
+            // + senArea.getSenTime());
+            // }
+            // System.out.println("############################################################################");
         }
 
         // 获得winner
@@ -254,16 +253,16 @@ public class AuctionService {
 
         for (User winner : winnerList) {
 
-            System.out.println("\n>>>>>>>>>>当前获胜者信息：");
-            System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
-                    + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
-                    + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
-                    + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
-            for (SenArea senArea : winner.getAllocation()) {
-                System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
-                        + senArea.getSenTime());
-            }
-            System.out.println("############################################################################");
+            // System.out.println("\n>>>>>>>>>>当前获胜者信息：");
+            // System.out.println("编号：" + winner.getId() + ", id：" + winner.getUserId() + ", 报价：" + winner.getBid()
+            // + ", 感知时间：" + winner.getOriginSenTime() + ", 剩余感知时间：" + winner.getRemainSenTime() + ", 感知时间和："
+            // + winner.getSenTimeTotal() + ", 关联任务：" + Arrays.toString(winner.getTaskIdList().toArray())
+            // + ", 单位成本：" + winner.getAveCost() + ", 收益：" + winner.getPay());
+            // for (SenArea senArea : winner.getAllocation()) {
+            // System.out.println("任务sa列表：" + Arrays.toString(senArea.getTaskIdList().toArray()) + ", 分配sa时间："
+            // + senArea.getSenTime());
+            // }
+            // System.out.println("############################################################################");
 
             // 只删除当前winner，下次迭代时恢复上次被删除的winner
             List<User> deleteUserList = JsonUtils.fastjsonToObj(originUserListStr, new TypeToken<List<User>>() {
@@ -282,13 +281,13 @@ public class AuctionService {
             List<User> nextWinnerList = winnerSelection(originTaskListStr, payUserListStr);
             // 确定支付价格
             for (User nextWinner : nextWinnerList) {
-                System.out.println("\n>>>>>>编号：" + nextWinner.getId() + ", 次级获胜者ID：" + nextWinner.getUserId()
-                        + ", 次级获胜者时间和：" + nextWinner.getSenTimeTotal() + ", 次级获胜者报价：" + nextWinner.getBid());
+                // System.out.println("\n>>>>>>编号：" + nextWinner.getId() + ", 次级获胜者ID：" + nextWinner.getUserId()
+                // + ", 次级获胜者时间和：" + nextWinner.getSenTimeTotal() + ", 次级获胜者报价：" + nextWinner.getBid());
                 winner.setPay(getPay(winner, nextWinner));
-                System.out.println(">>>>>>编号：" + winner.getId() + ", 获胜者ID：" + winner.getUserId() + ", 获胜者时间和："
-                        + winner.getSenTimeTotal() + ", 获胜者报价：" + winner.getBid() + ", 当前支付价格:" + winner.getPay());
+                // System.out.println(">>>>>>编号：" + winner.getId() + ", 获胜者ID：" + winner.getUserId() + ", 获胜者时间和："
+                // + winner.getSenTimeTotal() + ", 获胜者报价：" + winner.getBid() + ", 当前支付价格:" + winner.getPay());
             }
-            System.out.println();
+            // System.out.println();
         }
         return winnerList;
     }

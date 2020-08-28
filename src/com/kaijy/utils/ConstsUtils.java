@@ -8,11 +8,11 @@ public class ConstsUtils {
     // BP值
     public static final float BREAKPOINT = 0.25f;
     // 关联任务数
-    public static final int AOI = 3;
+    public static final int AOI = 2;
     // 随机任务数
-    public static final int TASKNUM = 4;
+    public static final int TASKNUM = 3;
     // 随机用户数
-    public static final int USERNUM = 25;
+    public static final int USERNUM = 30;
     // 任务最小感知时间
     public static final int TASKMINTIME = 5;
     // 任务最大感知时间
