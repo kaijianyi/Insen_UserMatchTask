@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class ConstsUtils {
     // 总执行次数
-    public static final int RUNNUM = 1;
+    public static final int RUNNUM = 2;
     // BP值
     public static final float BREAKPOINT = 0.25f;
     // 关联任务数
-    public static final int AOI = 2;
+    public static final int AOI = 10;
     // 随机任务数
-    public static final int TASKNUM = 3;
+    public static final int TASKNUM = 40;
     // 随机用户数
-    public static final int USERNUM = 30;
+    public static final int USERNUM = 300;
     // 任务最小感知时间
     public static final int TASKMINTIME = 5;
     // 任务最大感知时间

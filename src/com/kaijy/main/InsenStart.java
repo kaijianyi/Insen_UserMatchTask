@@ -48,8 +48,8 @@ public class InsenStart {
             // 任务Json
             String originTaskListStr = JsonUtils.objToFastjson(originTaskList);
 
-            System.out.println(originUserListStr);
-            System.out.println(originTaskListStr);
+            // System.out.println(originUserListStr);
+            // System.out.println(originTaskListStr);
 
             // 生成数据时间
             Instant ranTimeEnd = Instant.now();
